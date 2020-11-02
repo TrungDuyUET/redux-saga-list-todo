@@ -1,18 +1,19 @@
 import {
-  INPUT_VALUE_CHANGE,
+  // INPUT_VALUE_CHANGE,
   ADD_ITEM,
   DELETE_ITEM,
   GET_INIT_DATA,
   GET_INIT_LIST
 } from '../store/actionTypes'
 
-const getInputValueChangeAction = (value) => ({
-  type: INPUT_VALUE_CHANGE,
-  value
-})
+// const getInputValueChangeAction = (value) => ({
+//   type: INPUT_VALUE_CHANGE,
+//   value
+// })
 
-const getAddItemAction = () => ({
+const getAddItemAction = (value) => ({
   type: ADD_ITEM,
+  value
 })
 
 const getDeleteItemAction = (index) => ({
@@ -30,7 +31,7 @@ const getInitListAction = () => ({
 })
 
 export {
-  getInputValueChangeAction,
+  // getInputValueChangeAction,
   getAddItemAction,
   getDeleteItemAction,
   getInitDataAction,

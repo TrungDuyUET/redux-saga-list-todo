@@ -1,5 +1,5 @@
 import {
-  INPUT_VALUE_CHANGE,
+  // INPUT_VALUE_CHANGE,
   ADD_ITEM,
   DELETE_ITEM,
   GET_INIT_DATA
@@ -8,20 +8,15 @@ import {
 
 
 const defaultState = {
-  inputValue: '',
   list: []
 }
 
-export default (state = defaultState, action) => {
+const reducer =  (state = defaultState, action) => {
   let newState
   switch(action.type) {
-    case INPUT_VALUE_CHANGE:
-      newState = JSON.parse(JSON.stringify(state))
-      newState.inputValue = action.value
-      return newState
     case ADD_ITEM:
       newState = JSON.parse(JSON.stringify(state))
-      newState.list = [...state.list, state.inputValue]
+      newState.list = [...state.list, action.value]
       newState.inputValue = ''
       return newState
     case DELETE_ITEM:
@@ -36,3 +31,4 @@ export default (state = defaultState, action) => {
       return state
   }
 }
+export default reducer;

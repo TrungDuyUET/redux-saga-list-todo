@@ -1,7 +1,6 @@
  import {
   takeEvery,
-  put,
-  call
+  put
 } from 'redux-saga/effects'
 
 import {
@@ -14,13 +13,13 @@ import {
 
 import axios from 'axios'
 
-function getData(){
-    return new Promise.resolve({
-        data:{
-            data:["hi"]
-        }
-    })
-}
+// function getData(){
+//     return new Promise.resolve({
+//         data:{
+//             data:["hi"]
+//         }
+//     })
+// }
 
 function* getInitData() {
   try {

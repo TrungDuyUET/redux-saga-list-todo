@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
-import { connect, useDispatch, useSelector,} from 'react-redux'
-
-// import 'antd/dist/antd.css';
+import React, { useEffect, useState } from 'react';
+import {useDispatch, useSelector,} from 'react-redux'
 
 import {
-  getInputValueChangeAction, 
+  // getInputValueChangeAction, 
   getAddItemAction,
   getDeleteItemAction,
   getInitListAction
@@ -14,13 +12,14 @@ import {
 const TodoList = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state)
+  const [input, setInput] = useState('');
   const inputValueChange = (e) => {
-    const action = getInputValueChangeAction(e.target.value)
-      dispatch(action)
+    setInput(e.target.value);
   }
-  const handleAddItem = () => {
-    const action = getAddItemAction()
+  const handleAddItem = (value) => {
+    const action = getAddItemAction(value)
     dispatch(action)
+    setInput('');
   }
   const handleDeleteItem = (index) => {
     const action = getDeleteItemAction(index)
@@ -28,28 +27,28 @@ const TodoList = (props) => {
   }
   useEffect(()=>{
     // props.getInitList()
-    const action = getInitListAction()
-      dispatch(action)
+    const action = getInitListAction();
+    dispatch(action)
   },[])
 
-    console.log(state);
+    // console.log(state);
     return (
       <div style={{marginTop:50, marginLeft:50}}>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" 
+        <div className="input-group mb-3">
+          <input type="text" className="form-control" 
                   style={{width:"400", marginRight:10}}
-                  value={state.inputValue}
+                  value={input}
                   onChange={inputValueChange}/>
-          <div class="input-group-append">
-            <button class="btn btn-primary" 
+          <div className="input-group-append">
+            <button className="btn btn-primary" 
                     type="button" id="button-addon2"
-                    onClick={handleAddItem}>Add</button>
+                    onClick={()=>handleAddItem(input)}>Add</button>
           </div>
         </div>
         {state.list && state.list.map((listItem, index) =>{
             return (
-              <div className="border mt-3 -auto d-flex justify-content-between" style={{ marginRight:10, height:30}}>
-                <div className="my-auto" key={index}>{listItem}</div>
+              <div className="border mt-3 -auto d-flex justify-content-between" key={index} style={{ marginRight:10, height:30}}>
+                <div className="my-auto" >{listItem}</div>
                 <button onClick={() => {handleDeleteItem(index)}} className="btn btn-warning">Delete</button>
               </div>
             )
