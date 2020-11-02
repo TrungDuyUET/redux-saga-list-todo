@@ -13,14 +13,6 @@ import {
 
 import axios from 'axios'
 
-// function getData(){
-//     return new Promise.resolve({
-//         data:{
-//             data:["hi"]
-//         }
-//     })
-// }
-
 function* getInitData() {
   try {
     const res = yield axios.get("/test.json")
